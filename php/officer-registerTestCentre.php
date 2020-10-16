@@ -8,7 +8,27 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+
     <title>MyCovidTrail | Register Test Centre</title>
+    <?php
+    function OpenCon()
+    {
+      $dbhost = "localhost";
+      $dbuser = "ctisAdmin";
+      $db = "CTIS";
+
+      $conn = new mysqli($dbhost, $dbuser, $db) or die ("Connect failed : %s\n". $conn -> error);
+
+      return $conn;
+    }
+
+    function CloseCon($conn)
+    {
+      $conn -> close();
+    }
+
+    ?>
+
   </head>
   <body>
     <!-- Navbar -->
@@ -24,8 +44,32 @@
 
     <div class = "Welcome">
        <!-- Supposed to say "Welcome + UserType and/or Username" Eg. "Welcome Tester Leekeathong" -->
-        <h2 strong> Welcome User! </h2>
-      
+        <h2 strong style="padding:50px; background-color: #95B8D1;"> Welcome User! </h2>
+
+        <form action="welcome.php" method="post" style="padding:50px">
+          <div class="row">
+            <div class ="column" style="margin:20px">
+              Username: <input type="text" name="Username";><br>
+            </div>
+            <div class ="column" style="margin:20px;">
+              Landline : <input type="text" name="landline"><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class ="column" style="margin:20px; width: 100%;">
+              Address : <input type="text" name="address" style="width:35%"><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class ="column" style="margin:20px;">
+              Postal Code : <input type="text" name="address"><br>
+            </div>
+            <div class ="column" style="margin:20px;">
+              State : <input type="text" name="address"><br>
+            </div>
+          </div>
+            <input type="submit">
+        </form>
     </div>
   </body>
 </html>
