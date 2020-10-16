@@ -12,7 +12,7 @@
   </head>
   <body>
     <!-- Navbar -->
-    <?php include 'navbar.html';?>
+    <?php include 'navbar.php';?>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
