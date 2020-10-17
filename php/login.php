@@ -4,6 +4,8 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 } 
+$_SESSION['current'] = "login";
+
 if(isset($_POST['submit']))
 {
   include_once("database.php");
@@ -69,7 +71,10 @@ if(isset($_POST['submit']))
   </head>
   <body>
     <!-- Navbar -->
-    <?php include 'navbar.php';?>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <a class="navbar-brand" href="#"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
+    </nav>
     <!-- Main Content -->
     <div class="container">
       <div class="card m-5">
