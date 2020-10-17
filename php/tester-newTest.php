@@ -13,7 +13,95 @@
   <body>
     <!-- Navbar -->
     <?php include 'navbar.php';?>
-
+    <!-- Main Content -->
+    <div class="container">
+      <div class="card m-5">
+        <div class='card-body'>
+          <h3 class="card-title text-center">Record New Covid-19 Test</h3>
+          <h4 class=" text-center">Patient Detail</h4>
+          <div class="row border" style="border:10px;">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>IC No./Passport No.</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Password</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Emergency Contact</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Contact No.</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+          </div>
+          <h4 class=" text-center">Test Detail</h4>
+          <div class="row border" style="border:10px;">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Test Centre Name</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <label>Symptoms</label>
+                <input type="text" class="form-control"  placeholder="" >
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group mx-5">
+                <p>Patient Type:</p>
+                <select id="inputState" class="form-control">
+                  <option selected>Returnee</option>
+                  <option>Quarantined</option>
+                  <option>Close contact</option>
+                  <option>Infected</option>
+                  <option>Suspected</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12 text-center">
+              <input type="submit" class="btn btn-primary btn-lg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

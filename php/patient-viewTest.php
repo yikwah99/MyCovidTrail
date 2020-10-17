@@ -13,6 +13,67 @@
   <body>
     <!-- Navbar -->
     <?php include 'navbar.php';?>
+    
+    <!-- Main Content -->
+    <div class="container">
+      <div class="card m-5">
+        <div class='card-body'>
+          <h3 class="card-title text-center">Covid-19 Test Report</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Result Date</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Test Type</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Test Date</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Symptoms</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Tester</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Test Centre</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Test Result</label>
+                <input type="text" class="form-control"  placeholder="" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
