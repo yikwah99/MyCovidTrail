@@ -8,17 +8,13 @@ $errormsg="";
 $testcentreResult=mysqli_query($con,"SELECT * FROM testcentre;");
 if(isset($_POST['submit'])){
 
-  $patientUsernameCheck = "select * from user,patient WHERE user.username='".$_POST['username']."'  AND password='".$_POST['password']."'AND user.username=patient.username;";
-  $patientUsernameCheckRow = mysqli_num_rows(mysqli_query($con,$patientUsernameCheck));
-  if ($patientUsernameCheckRow>0)
-    $errormsg="Username '".$_POST['username']."' already exist!";
+  $testcentreCheck = "select * from testcentre WHERE testcentre.centreName='".$_POST['centreName']."'";
+  $testCentreCheckRow = mysqli_num_rows(mysqli_query($con,$testcentreCheck));
+  if ($testCentreCheckRow>0)
+    $errormsg="TestCentre '".$_POST['CentreName']."' already exist!";
   else{
-    $userInsertSql="INSERT INTO `user` (`username`, `password`, `name`, `email`, `address`, `identificationNo`, `contactNo`) VALUES ('".$_POST['username']."', '".$_POST['password']."', '".$_POST['name']."', '".$_POST['email']."', '".$_POST['address']."', '".$_POST['identificationNo']."', '".$_POST['contactNo']."');";
-    mysqli_query($con,$userInsertSql);
-    $patientInsertSql="INSERT INTO `patient` (`username`, `patientType`, `symptoms`, `emergencyContact`) VALUES ('".$_POST['username']."', '".$_POST['patientType']."', '".$_POST['symptoms']."', '".$_POST['emergency']."');";
-    mysqli_query($con,$patientInsertSql);
-    $testInsertSql="INSERT INTO `covidtest` (`testID`, `testDate`, `status`, `result`, `resultDate`, `recipient`, `tester`, `kitID`, `location`) VALUES ('".uniqid()."', '".$_POST['testDate']."', 'pending', 'null', 'null', '".$_POST['username']."', '".$_SESSION['username']."', '".$_POST['kitID']."', '".$_SESSION['testcentre']."');";
-    mysqli_query($con,$testInsertSql);
+    $testCentreInsertSql="INSERT INTO `testcentre` (`centreName`, `Address`, `landline`) VALUES ('".$_POST['centreName ']."', '".$_POST['address']."', '".$_POST['landline']."')";
+    mysqli_query($con,$testCentreInsertSql);
 
   }
 }
@@ -64,19 +60,19 @@ if(isset($_POST['submit'])){
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>CentreName</label>
-                    <input type="text" class="form-control"  placeholder="eg: Columbia Asia">
+                    <input type="text" name="centreName" class="form-control"  placeholder="eg: Columbia Asia">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Landline</label>
-                    <input type="text" class="form-control"  placeholder="eg: +603-58821987">
+                    <input type="text" name="landline" class="form-control"  placeholder="eg: +603-58821987">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Test Centre address</label>
-                    <input type="text" class="form-control"  placeholder="">
+                    <label>Test Centre Address</label>
+                    <input type="text" name="address" class="form-control"  placeholder="">
                   </div>
                 </div>
                 <div class="col-md-12 text-center">
