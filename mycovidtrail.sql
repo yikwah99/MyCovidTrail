@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2020 at 02:47 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: Oct 17, 2020 at 03:35 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mycovidtrail`
+-- Database: `MyCovidTrail`
 --
 
 -- --------------------------------------------------------
@@ -101,16 +102,18 @@ INSERT INTO `patient` (`username`, `patientType`, `symptoms`, `emergencyContact`
 
 CREATE TABLE `testcentre` (
   `centreID` varchar(20) NOT NULL,
-  `centreName` varchar(200) NOT NULL
+  `centreName` varchar(200) NOT NULL,
+  `Address` varchar(500) NOT NULL,
+  `Landline` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `testcentre`
 --
 
-INSERT INTO `testcentre` (`centreID`, `centreName`) VALUES
-('TC01', 'SJMC'),
-('TC02', 'Columbia Asia');
+INSERT INTO `testcentre` (`centreID`, `centreName`, `Address`, `Landline`) VALUES
+('TC01', 'SJMC', '', ''),
+('TC02', 'Columbia Asia', '', '');
 
 -- --------------------------------------------------------
 
