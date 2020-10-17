@@ -31,7 +31,7 @@
         <div class="container">
           <div class="card m-5">
             <div class='card-body'>
-              <h3 class="card-title text-center">Manage TestKit Stock</h3>
+              <h3 class="card-title text-center">Register Test Centre</h3>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
