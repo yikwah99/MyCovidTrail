@@ -1,3 +1,33 @@
+<?php 
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+include_once("database.php");
+$errormsg="";
+$testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
+if(isset($_POST['submit'])){
+  
+  $patientUsernameCheck = "select * from user,patient WHERE user.username='".$_POST['username']."'  AND password='".$_POST['password']."'AND user.username=patient.username;";
+  $patientUsernameCheckRow = mysqli_num_rows(mysqli_query($con,$patientUsernameCheck));
+  if ($patientUsernameCheckRow>0)
+    $errormsg="Username '".$_POST['username']."' already exist!";
+  else{
+    $userInsertSql="INSERT INTO `user` (`username`, `password`, `name`, `email`, `address`, `identificationNo`, `contactNo`) VALUES ('".$_POST['username']."', '".$_POST['password']."', '".$_POST['name']."', '".$_POST['email']."', '".$_POST['address']."', '".$_POST['identificationNo']."', '".$_POST['contactNo']."');";
+    mysqli_query($con,$userInsertSql);
+    $patientInsertSql="INSERT INTO `patient` (`username`, `patientType`, `symptoms`, `emergencyContact`) VALUES ('".$_POST['username']."', '".$_POST['patientType']."', '".$_POST['symptoms']."', '".$_POST['emergency']."');";
+    mysqli_query($con,$patientInsertSql);
+    $testInsertSql="INSERT INTO `covidtest` (`testID`, `testDate`, `status`, `result`, `resultDate`, `recipient`, `tester`, `kitID`, `location`) VALUES ('".uniqid()."', '".$_POST['testDate']."', 'pending', 'null', 'null', '".$_POST['username']."', '".$_SESSION['username']."', '".$_POST['kitID']."', '".$_SESSION['testcentre']."');";
+    mysqli_query($con,$testInsertSql);
+    
+  }
+}
+//user(username,password,name,email,adress,identificationNo, contactNo)
+//patient(username,patientType,symptoms,emergency)
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,90 +46,113 @@
     <!-- Main Content -->
     <div class="container">
       <div class="card m-5">
-        <div class='card-body'>
-          <h3 class="card-title text-center">Record New Covid-19 Test</h3>
-          <h4 class=" text-center">Patient Detail</h4>
-          <div class="row border" style="border:10px;">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" class="form-control"  placeholder="" >
+        <form method="POST" action="#">
+          <div class='card-body'>
+            <h3 class="card-title text-center">Record New Covid-19 Test</h3>
+            <h4 class=" text-center">Patient Detail</h4>
+            <div class="row border" style="border:10px;">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" name="name" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="text" name="email" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>IC No./Passport No.</label>
+                  <input type="text" name="identificationNo" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" name="username" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" name="password" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Emergency Contact</label>
+                  <input type="text" name="emergency" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Contact No.</label>
+                  <input type="text" name="contactNo" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" name="address" class="form-control"  placeholder="" >
+                </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Email Address</label>
-                <input type="text" class="form-control"  placeholder="" >
+            <h4 class=" text-center">Test Detail</h4>
+            <div class="row border" style="border:10px;">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Test Centre Name</label>
+                  <input type="text" name="testcentre" class="form-control"  value="<?php echo $_SESSION['testcentre']; ?>" disabled>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>IC No./Passport No.</label>
-                <input type="text" class="form-control"  placeholder="" >
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Symptoms</label>
+                  <input type="text" name="symptoms" class="form-control"  placeholder="" >
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control"  placeholder="" >
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Test Date</label>
+                  <input name="testDate" value="<?php echo (date("Y-m-d")); ?>"class="form-control" type="date">
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Password</label>
-                <input type="text" class="form-control"  placeholder="" >
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Test Kit</label>
+                  <select id="inputState" name="kitID" class="form-control">
+                    <?php
+                    $i=0;
+                    while($testKitRow=mysqli_fetch_array($testkitResult)){
+                      ?>
+                      <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo $testKitRow["kitID"]; ?></option>
+                    <?php
+                    $i++;}
+                    ?>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Emergency Contact</label>
-                <input type="text" class="form-control"  placeholder="" >
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Patient Type</label>
+                  <select id="inputState" name="patientType" class="form-control">
+                    <option value ="returnee" selected>Returnee</option>
+                    <option value ="quarantined">Quarantined</option>
+                    <option value ="close contact">Close contact</option>
+                    <option value ="infect">Infected</option>
+                    <option value ="suspected">Suspected</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Contact No.</label>
-                <input type="text" class="form-control"  placeholder="" >
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Address</label>
-                <input type="text" class="form-control"  placeholder="" >
+              <div class="col-md-12 text-center">
+                <input type="submit" name="submit" value="Register" class="btn btn-primary">
               </div>
             </div>
           </div>
-          <h4 class=" text-center">Test Detail</h4>
-          <div class="row border" style="border:10px;">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Test Centre Name</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="form-group">
-                <label>Symptoms</label>
-                <input type="text" class="form-control"  placeholder="" >
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group mx-5">
-                <p>Patient Type:</p>
-                <select id="inputState" class="form-control">
-                  <option selected>Returnee</option>
-                  <option>Quarantined</option>
-                  <option>Close contact</option>
-                  <option>Infected</option>
-                  <option>Suspected</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-12 text-center">
-              <input type="submit" class="btn btn-primary btn-lg">
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
     <!-- Optional JavaScript -->
