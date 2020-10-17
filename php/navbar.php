@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       
-      <?php session_start(); if($_SESSION['role']=="manager"){ ?>
+      <?php if(!isset($_SESSION)){session_start();}  if($_SESSION['role']=="manager"){ ?>
       <!--Officer Navbar-->
       <li class="nav-item active">
         <a class="nav-link" href="officer-manageTestKit.php">Manage Test Kit Stock</a>
@@ -26,7 +26,7 @@
       <li class="nav-item">
         <a class="nav-link" href="patient-viewTest.php">View Test Result</a>
       </li>
-      <?php }else{ ?>
+      <?php }else if ($_SESSION['role']=="tester"){ ?>
       <!--Tester Navbar-->
       <li class="nav-item">
         <a class="nav-link" href="tester-newTest.php">Record New Test</a>

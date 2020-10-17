@@ -1,53 +1,58 @@
 <?php
     
-    session_start();
-    if(isset($_POST['submit']))
-    {
-      include_once("database.php");
-      $check = "";
-      $username=$_POST['username'];
-      $password=$_POST['password'];
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+if(isset($_POST['submit']))
+{
+  include_once("database.php");
+  $check = "";
+  $username=$_POST['username'];
+  $password=$_POST['password'];
 
-      if($username!=''&&$password!='')
-      {
-        //Officer Check
-        $sql = "select * from user,centreOfficer WHERE user.username='".$username."'  AND user.password='".$password."' AND user.username=centreOfficer.username;";
-        $result = mysqli_query($con,$sql);
-        $row = mysqli_fetch_assoc($result);
-        if(!$row){
-          //Patient Check
-          $patientsql = "select * from user,PATIENT WHERE user.username='".$username."'  AND password='".$password."'AND user.username=patient.username;";
-          $patientresult = mysqli_query($con,$patientsql);
-          $patientrow = mysqli_fetch_assoc($patientresult);
-          if(!$patientrow){
-            $check="Wrong Username and Password";
-          }
-          else{
-            $_SESSION['role'] = "patient";
-            header('location:patient-viewTest.php');
-          }
-
-        }
-        else
-        {
-          $_SESSION['username'] =$username;
-          if($row["position"]=="manager"){
-            $_SESSION['role'] = "manager";
-            header('location:officer-registerTestCentre.php');
-          }
-          else{
-            $_SESSION['role'] = "tester";
-            header('location:tester-newTest.php');
-          }
-            
-        }
-        
-
+  if($username!=''&&$password!='')
+  {
+    //Officer Check
+    $sql = "select * from user,centreOfficer WHERE user.username='".$username."'  AND user.password='".$password."' AND user.username=centreOfficer.username;";
+    $result = mysqli_query($con,$sql);
+    $row = mysqli_fetch_assoc($result);
+    if(!$row){
+      //Patient Check
+      $patientsql = "select * from user,PATIENT WHERE user.username='".$username."'  AND password='".$password."'AND user.username=patient.username;";
+      $patientresult = mysqli_query($con,$patientsql);
+      $patientrow = mysqli_fetch_assoc($patientresult);
+      if(!$patientrow){
+        $check="Wrong Username and Password";
       }
-      else
-        $check="Username and Password must not be empty!";
-        
+      else{
+        $_SESSION['username'] =$username;
+        $_SESSION['role'] = "patient";
+        header('location:patient-viewTest.php');
+      }
+
     }
+    else
+    {
+      $_SESSION['username'] =$username;
+      $_SESSION['testcentre'] = $row["workplace"];
+      if($row["position"]=="manager"){
+        $_SESSION['role'] = "manager";
+        header('location:officer-registerTestCentre.php');
+      }
+      else{
+        $_SESSION['role'] = "tester";
+        header('location:tester-newTest.php');
+      }
+
+    }
+
+
+  }
+  else
+    $check="Username and Password must not be empty!";
+
+}
 ?>
 
 <!doctype html>
