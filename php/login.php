@@ -1,10 +1,9 @@
 <?php
-    
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
-$_SESSION['current'] = "login";
+
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 if(isset($_POST['submit']))
 {
@@ -93,7 +92,7 @@ if(isset($_POST['submit']))
               <input type="submit" name="submit" value="Login" class="btn btn-primary btn-lg">
             </div>
           </form>
-          
+
         </div>
       </div>
     </div>
