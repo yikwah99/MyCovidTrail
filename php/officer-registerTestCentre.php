@@ -35,51 +35,24 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" class="form-control"  placeholder="" disabled>
+                    <label>CentreName</label>
+                    <input type="text" class="form-control"  placeholder="eg: Columbia Asia">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label>Result Date</label>
-                    <input type="text" class="form-control"  placeholder="" disabled>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Test Type</label>
-                    <input type="text" class="form-control"  placeholder="" disabled>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Test Date</label>
-                    <input type="text" class="form-control"  placeholder="" disabled>
+                    <label>Landline</label>
+                    <input type="text" class="form-control"  placeholder="eg: +603-58821987">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Symptoms</label>
-                    <input type="text" class="form-control"  placeholder="" disabled>
+                    <label>Test Centre address</label>
+                    <input type="text" class="form-control"  placeholder="">
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Tester</label>
-                    <input type="text" class="form-control"  placeholder="" disabled>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Test Centre</label>
-                    <input type="text" class="form-control"  placeholder="" disabled>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>Test Result</label>
-                    <input type="text" class="form-control"  placeholder="" disabled>
-                  </div>
+                <div class="col-md-12 text-center">
+                  <input type="submit" class="btn btn-primary btn-lg">
                 </div>
               </div>
             </div>
