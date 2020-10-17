@@ -10,24 +10,6 @@
 
 
     <title>MyCovidTrail | Register Test Centre</title>
-    <?php
-    function OpenCon()
-    {
-      $dbhost = "localhost";
-      $dbuser = "ctisAdmin";
-      $db = "CTIS";
-
-      $conn = new mysqli($dbhost, $dbuser, $db) or die ("Connect failed : %s\n". $conn -> error);
-
-      return $conn;
-    }
-
-    function CloseCon($conn)
-    {
-      $conn -> close();
-    }
-
-    ?>
 
   </head>
   <body>
@@ -46,30 +28,63 @@
        <!-- Supposed to say "Welcome + UserType and/or Username" Eg. "Welcome Tester Leekeathong" -->
         <h2 strong style="padding:50px; background-color: #95B8D1;"> Welcome User! </h2>
 
-        <form action="welcome.php" method="post" style="padding:50px">
-          <div class="row">
-            <div class ="column" style="margin:20px">
-              Username: <input type="text" name="Username";><br>
-            </div>
-            <div class ="column" style="margin:20px;">
-              Landline : <input type="text" name="landline"><br>
+        <div class="container">
+          <div class="card m-5">
+            <div class='card-body'>
+              <h3 class="card-title text-center">Manage TestKit Stock</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control"  placeholder="" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Result Date</label>
+                    <input type="text" class="form-control"  placeholder="" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Test Type</label>
+                    <input type="text" class="form-control"  placeholder="" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Test Date</label>
+                    <input type="text" class="form-control"  placeholder="" disabled>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Symptoms</label>
+                    <input type="text" class="form-control"  placeholder="" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Tester</label>
+                    <input type="text" class="form-control"  placeholder="" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Test Centre</label>
+                    <input type="text" class="form-control"  placeholder="" disabled>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Test Result</label>
+                    <input type="text" class="form-control"  placeholder="" disabled>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class ="column" style="margin:20px; width: 100%;">
-              Address : <input type="text" name="address" style="width:35%"><br>
-            </div>
-          </div>
-          <div class="row">
-            <div class ="column" style="margin:20px;">
-              Postal Code : <input type="text" name="address"><br>
-            </div>
-            <div class ="column" style="margin:20px;">
-              State : <input type="text" name="address"><br>
-            </div>
-          </div>
-            <input type="submit">
-        </form>
+        </div>
     </div>
   </body>
 </html>
