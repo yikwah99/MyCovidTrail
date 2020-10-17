@@ -1,3 +1,31 @@
+<?php
+if(!isset($_SESSION))
+{
+    session_start();
+}
+include_once("database.php");
+$errormsg="";
+$testcentreResult=mysqli_query($con,"SELECT * FROM testcentre;");
+if(isset($_POST['submit'])){
+
+  $patientUsernameCheck = "select * from user,patient WHERE user.username='".$_POST['username']."'  AND password='".$_POST['password']."'AND user.username=patient.username;";
+  $patientUsernameCheckRow = mysqli_num_rows(mysqli_query($con,$patientUsernameCheck));
+  if ($patientUsernameCheckRow>0)
+    $errormsg="Username '".$_POST['username']."' already exist!";
+  else{
+    $userInsertSql="INSERT INTO `user` (`username`, `password`, `name`, `email`, `address`, `identificationNo`, `contactNo`) VALUES ('".$_POST['username']."', '".$_POST['password']."', '".$_POST['name']."', '".$_POST['email']."', '".$_POST['address']."', '".$_POST['identificationNo']."', '".$_POST['contactNo']."');";
+    mysqli_query($con,$userInsertSql);
+    $patientInsertSql="INSERT INTO `patient` (`username`, `patientType`, `symptoms`, `emergencyContact`) VALUES ('".$_POST['username']."', '".$_POST['patientType']."', '".$_POST['symptoms']."', '".$_POST['emergency']."');";
+    mysqli_query($con,$patientInsertSql);
+    $testInsertSql="INSERT INTO `covidtest` (`testID`, `testDate`, `status`, `result`, `resultDate`, `recipient`, `tester`, `kitID`, `location`) VALUES ('".uniqid()."', '".$_POST['testDate']."', 'pending', 'null', 'null', '".$_POST['username']."', '".$_SESSION['username']."', '".$_POST['kitID']."', '".$_SESSION['testcentre']."');";
+    mysqli_query($con,$testInsertSql);
+
+  }
+}
+//user(username,password,name,email,adress,identificationNo, contactNo)
+//patient(username,patientType,symptoms,emergency)
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
