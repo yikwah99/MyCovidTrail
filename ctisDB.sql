@@ -40,7 +40,7 @@ CREATE TABLE `CentreOfficer` (
 
 INSERT INTO `CentreOfficer` (`username`, `position`, `workplace`) VALUES
 ('leekeathong', 'tester', 'TC01'),
-('brownbutt', 'Manager', 'TC02');
+('brownbutt', 'manager', 'TC02');
 
 -- --------------------------------------------------------
 
@@ -75,7 +75,7 @@ INSERT INTO `covidTest` (`testID`, `testDate`, `status`, `result`, `resultDate`,
 --
 
 CREATE TABLE `Patient` (
-  `Username` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `patientType` varchar(20) NOT NULL,
   `symptoms` varchar(250) DEFAULT NULL,
   `emergencyContact` varchar(14) NOT NULL
@@ -85,7 +85,7 @@ CREATE TABLE `Patient` (
 -- Dumping data for table `Patient`
 --
 
-INSERT INTO `Patient` (`Username`, `patientType`, `symptoms`, `emergencyContact`) VALUES
+INSERT INTO `Patient` (`username`, `patientType`, `symptoms`, `emergencyContact`) VALUES
 ('hamyiwah', 'Suspected', 'Diabetes, fever', '0123707606'),
 ('rtd', 'Infected', 'High Fever, Vomiting', '0122309882');
 
@@ -137,9 +137,9 @@ INSERT INTO `testKit` (`kitID`, `testName`, `availableStock`, `location`) VALUES
 --
 
 CREATE TABLE `User` (
-  `Username` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `Name` varchar(200) NOT NULL,
+  `name` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
   `address` varchar(500) NOT NULL,
   `identificationNo` varchar(20) NOT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE `User` (
 -- Dumping data for table `User`
 --
 
-INSERT INTO `User` (`Username`, `password`, `Name`, `email`, `address`, `identificationNo`, `contactNo`) VALUES
+INSERT INTO `User` (`username`, `password`, `Name`, `email`, `address`, `identificationNo`, `contactNo`) VALUES
 ('brownbutt', 'nom', 'Chng Jian Luk', 'jianlun99@email.com', '33 Jalan Permas 3/18 Taman Permas Jaya 81750 Masai Johor Malaysia', '990122-07-6968', '0182744399'),
 ('hamyiwah', 'kanninna', 'Kam Yik Wah', 'yikwah99@email.com', 'no 69 lukkao Street, Tropicana', '126929-69-6969', '0123956552'),
 ('leekeathong', 'shiden', 'Lee Keat Hong', 'leekeathong@gmail.com', 'No 55 Jalan Wawasan 1/4 Puchong', '990729-10-6446', '0186643739'),
@@ -181,7 +181,7 @@ ALTER TABLE `covidTest`
 -- Indexes for table `Patient`
 --
 ALTER TABLE `Patient`
-  ADD KEY `Username` (`Username`);
+  ADD KEY `username` (`username`);
 
 --
 -- Indexes for table `TestCentre`
@@ -200,7 +200,7 @@ ALTER TABLE `testKit`
 -- Indexes for table `User`
 --
 ALTER TABLE `User`
-  ADD PRIMARY KEY (`Username`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Constraints for dumped tables
@@ -210,14 +210,14 @@ ALTER TABLE `User`
 -- Constraints for table `CentreOfficer`
 --
 ALTER TABLE `CentreOfficer`
-  ADD CONSTRAINT `officerUsername` FOREIGN KEY (`username`) REFERENCES `User` (`Username`),
+  ADD CONSTRAINT `officerUsername` FOREIGN KEY (`username`) REFERENCES `User` (`username`),
   ADD CONSTRAINT `workplace` FOREIGN KEY (`workplace`) REFERENCES `TestCentre` (`centreID`);
 
 --
 -- Constraints for table `covidTest`
 --
 ALTER TABLE `covidTest`
-  ADD CONSTRAINT `recipient` FOREIGN KEY (`recipient`) REFERENCES `Patient` (`Username`),
+  ADD CONSTRAINT `recipient` FOREIGN KEY (`recipient`) REFERENCES `Patient` (`username`),
   ADD CONSTRAINT `testLocation` FOREIGN KEY (`location`) REFERENCES `TestCentre` (`centreID`),
   ADD CONSTRAINT `tester` FOREIGN KEY (`tester`) REFERENCES `CentreOfficer` (`username`),
   ADD CONSTRAINT `tkID` FOREIGN KEY (`kitID`) REFERENCES `testKit` (`kitID`);
@@ -226,7 +226,7 @@ ALTER TABLE `covidTest`
 -- Constraints for table `Patient`
 --
 ALTER TABLE `Patient`
-  ADD CONSTRAINT `Foreign key` FOREIGN KEY (`Username`) REFERENCES `User` (`Username`);
+  ADD CONSTRAINT `Foreign key` FOREIGN KEY (`username`) REFERENCES `User` (`username`);
 
 --
 -- Constraints for table `testKit`
