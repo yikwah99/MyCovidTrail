@@ -4,7 +4,7 @@ if(!isset($_SESSION))
     session_start(); 
 } 
 include_once("database.php");
-$testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
+$testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."' AND testkit.availableStock>0;");
 
 
 if (isset($_GET['patient'])){
@@ -16,11 +16,14 @@ if(isset($_POST['submit'])){
   mysqli_query($con,$patientUpdateSql);
   
   $testInsertSql="INSERT INTO `covidtest` (`testID`, `testDate`, `status`, `result`, `resultDate`, `recipient`, `tester`, `kitID`, `location`) VALUES ('".uniqid()."', '".$_POST['testDate']."', 'pending', 'null', 'null', '".$_GET['patient']."', '".$_SESSION['username']."', '".$_POST['kitID']."', '".$_SESSION['testcentre']."');";
-  
   mysqli_query($con,$testInsertSql);
+  
+  $testkitUpdateSql="UPDATE testkit SET availableStock=availableStock-1 WHERE kitID='".$_POST['kitID']."' AND location='".$_SESSION['testcentre']."';";
+  mysqli_query($con,$testkitUpdateSql);
+  
   $_SESSION['message']="New Test Added for ".$_GET['patient']."!";
   header('location:tester-newTest.php');
-    
+  
   }
 ?>
 <!doctype html>
