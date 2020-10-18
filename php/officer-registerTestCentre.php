@@ -19,7 +19,7 @@ if(isset($_POST['submit']) && ($_POST['centreName']!="")){
     mysqli_query($con,$testCentreInsertSql);
     $_SESSION['message']="New Test Centre Added!";
   }
-
+}
 //data entry validation doesn't work yet.
 /*}
 elseif(($_POST['centreName']="") || ($_POST['landline']="") || ($_POST['address']="")){
