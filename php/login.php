@@ -69,32 +69,33 @@ include_once("alert.php");
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
 
     <title>MyCovidTrail | Login</title>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light py-3" style="background: rgba(255,255,255,0.0);">
 
-      <a class="navbar-brand" href="#"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
+      <a class="navbar-brand" href="landing.php"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
     </nav>
     <!-- Main Content -->
     <div class="container">
-      <div class="card m-5 mx-auto" style="width: 30rem;">
+      <div class="card m-5 mx-auto shadow-lg rounded" style="width: 30rem;">
         <div class='card-body'>
           <h3 class="card-title text-center">Login</h3>
           <hr>
           <form action="#" method="post">
             <div class="form-group m-5">
               <label>Username</label>
-              <input type="text" name="username" class="form-control"  placeholder="">
+              <input type="text" name="username" class="form-control"  placeholder="" required>
             </div>
             <div class="form-group m-5">
               <label>Password</label>
-              <input type="password" name="password" class="form-control"  placeholder="">
+              <input type="password" name="password" class="form-control"  placeholder="" required>
             </div>
             <div class="col-md-12 text-center">
-              <input type="submit" name="submit" value="Login" class="btn btn-primary btn-lg">
+              <input type="submit" name="submit" value="Login" class="btn btn-dark btn-lg" >
             </div>
           </form>
 
