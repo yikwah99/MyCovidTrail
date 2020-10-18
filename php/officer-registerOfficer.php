@@ -54,43 +54,43 @@ include_once("alert.php");
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Full Name</label>
-                  <input type="text" name="name" class="form-control"  placeholder="" >
+                  <input type="text" name="name" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Email Address</label>
-                  <input type="text" name="email" class="form-control"  placeholder="" >
+                  <input type="text" name="email" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>IC No./Passport No.</label>
-                  <input type="text" name="identificationNo" class="form-control"  placeholder="" >
+                  <input type="text" name="identificationNo" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Username</label>
-                  <input type="text" name="username" class="form-control"  placeholder="" >
+                  <input type="text" name="username" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" name="password" class="form-control"  placeholder="" >
+                  <input type="password" name="password" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Contact No.</label>
-                  <input type="text" name="contactNo" class="form-control"  placeholder="" >
+                  <input type="text" name="contactNo" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Address</label>
-                  <input type="text" name="address" class="form-control"  placeholder="" >
+                  <input type="text" name="address" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-12 text-center">
