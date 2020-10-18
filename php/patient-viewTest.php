@@ -1,3 +1,12 @@
+<?php
+if(!isset($_SESSION))
+{
+    session_start();
+}
+//alert message
+include_once("alert.php");
+?>
+
 <!doctype html>
 <html lang="en">
   <head>

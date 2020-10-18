@@ -29,6 +29,7 @@ if(isset($_POST['submit']))
       else{
         $_SESSION['username'] =$username;
         $_SESSION['role'] = "patient";
+        $_SESSION['message']="Login Successful! Welcome to the MyCovidTrail!";
         header('location:patient-viewTest.php');
       }
 
@@ -39,10 +40,12 @@ if(isset($_POST['submit']))
       $_SESSION['testcentre'] = $row["workplace"];
       if($row["position"]=="manager"){
         $_SESSION['role'] = "manager";
+        $_SESSION['message']="Login Successful! Welcome to the MyCovidTrail!";
         header('location:officer-registerTestCentre.php');
       }
       else{
         $_SESSION['role'] = "tester";
+        $_SESSION['message']="Login Successful! Welcome to the MyCovidTrail!";
         header('location:tester-newTest.php');
       }
 
