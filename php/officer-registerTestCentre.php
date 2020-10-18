@@ -70,19 +70,19 @@ elseif(($_POST['centreName']="") || ($_POST['landline']="") || ($_POST['address'
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>CentreName</label>
-                    <input type="text" name="centreName" class="form-control"  placeholder="eg: Columbia Asia">
+                    <input type="text" name="centreName" class="form-control"  placeholder="eg: Columbia Asia" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Landline</label>
-                    <input type="text" name="landline" class="form-control"  placeholder="eg: +603-58821987">
+                    <input type="text" name="landline" class="form-control"  placeholder="eg: +603-58821987" required>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>Test Centre Address</label>
-                    <input type="text" name="address" class="form-control"  placeholder="">
+                    <input type="text" name="address" class="form-control"  placeholder="" required>
                   </div>
                 </div>
                 <div class="col-md-12 text-center">
