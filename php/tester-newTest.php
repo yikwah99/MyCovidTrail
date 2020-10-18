@@ -6,8 +6,12 @@ if(!isset($_SESSION))
 include_once("database.php");
 $errormsg="";
 $testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
+$testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
+$patientResult = mysqli_query($con,"SELECT * from user,patient,covidTest WHERE user.username=patient.username AND user.username=covidTest.recipient AND covidTest.status='completed';");
+
+
+
 if(isset($_POST['submit'])){
-  
   $patientUsernameCheck = "select * from user,patient WHERE user.username='".$_POST['username']."'  AND password='".$_POST['password']."'AND user.username=patient.username;";
   $patientUsernameCheckRow = mysqli_num_rows(mysqli_query($con,$patientUsernameCheck));
   if ($patientUsernameCheckRow>0)
@@ -125,12 +129,11 @@ if(isset($_POST['submit'])){
                   <label>Test Kit</label>
                   <select id="inputState" name="kitID" class="form-control">
                     <?php
-                    $i=0;
-                    while($testKitRow=mysqli_fetch_array($testkitResult)){
+                    foreach($testkitResult as $testKitRow){
+                    //while($testKitRow=mysqli_fetch_array($testkitResult)){
                       ?>
                       <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo $testKitRow["kitID"]; ?></option>
-                    <?php
-                    $i++;}
+                    <?php ;}
                     ?>
                   </select>
                 </div>
@@ -148,12 +151,58 @@ if(isset($_POST['submit'])){
                 </div>
               </div>
               <div class="col-md-12 text-center">
-                <input type="submit" name="submit" value="Register" class="btn btn-primary">
+                <input type="submit" name="submit" value="Register" class="btn btn-dark">
               </div>
             </div>
           </div>
         </form>
       </div>
+      
+      
+    </div>
+    <h3 class="text-center">Existing Covid-19 Patient List</h3>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Password</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">IC No./Passport No.</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Contact No</th>
+            <th scope="col">Emergency Contact</th>
+            <th scope="col">Address</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <?php
+          $j=0;
+          while($patientRow=mysqli_fetch_array($patientResult)){ ?>
+          <tr>
+            <th scope="row"><?php echo($j+1) ?></th>
+            <td><?php echo $patientRow["username"]; ?></td>
+            <td><?php echo $patientRow["password"]; ?></td>
+            <td><?php echo $patientRow["name"]; ?></td>
+            <td><?php echo $patientRow["identificationNo"]; ?></td>
+            <td><?php echo $patientRow["email"]; ?></td>
+            <td><?php echo $patientRow["contactNo"]; ?></td>
+            <td><?php echo $patientRow["emergencyContact"]; ?></td>
+            <td><?php echo $patientRow["address"]; ?></td>
+            
+            <td>
+              <!--<button type="button" class="btn btn-dark">New Test</button>-->
+              <a class="btn btn-dark" href='tester-newTestForm.php?patient=<?php echo $patientRow["username"]; ?>'>Add New Test</a>
+            </td>
+          </tr>
+          <?php    
+          $j++;}
+          ?>
+        </tbody>
+      </table>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
