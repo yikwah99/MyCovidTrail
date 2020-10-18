@@ -1,3 +1,33 @@
+<?php
+if(!isset($_SESSION))
+{
+    session_start();
+}
+include_once("database.php");
+$errormsg="";
+$officerResult = mysqli_query($con,"SELECT * from user, centreofficer WHERE user.username=centreofficer.username;");
+
+if(isset($_POST['submit'])){
+
+  $officerUsernameCheck = "select * from user,centreofficer WHERE user.username='".$_POST['username']."'  AND password='".$_POST['password']."'AND user.username=centreofficer.username;";
+  $officerUsernameCheckRow = mysqli_num_rows(mysqli_query($con,$officerUsernameCheck));
+
+  if ($officerUsernameCheckRow>0){
+    echo '<script>alert("That Username already exists!")</script>';
+  }
+  else{
+    $userInsertSql="INSERT INTO `user` (`username`, `password`, `name`, `email`, `address`, `identificationNo`, `contactNo`) VALUES ('".$_POST['username']."', '".$_POST['password']."', '".$_POST['name']."', '".$_POST['email']."',
+      '".$_POST['address']."', '".$_POST['identificationNo']."', '".$_POST['contactNo']."');";
+    mysqli_query($con,$userInsertSql);
+    $centreofficerInsertSql="INSERT INTO `centreofficer` (`username`, `position`, `workplace`) VALUES ('".$_POST['username']."', 'Tester', '".$_SESSION['testcentre']."');";
+    mysqli_query($con,$userInsertSql);
+    mysqli_query($con,$centreofficerInsertSql);
+
+  }
+}
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,6 +43,65 @@
   <body>
     <!-- Navbar -->
     <?php include 'navbar.php';?>
+    <div class="container">
+      <div class="card m-5">
+        <form method="POST" action="#">
+          <div class='card-body'>
+            <h3 class="card-title text-center">Register new Tester Account</h3>
+            <h4 class=" text-center">Tester Account Details</h4>
+            <div class="row border" style="border:10px; padding-top: 10px">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" name="name" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="text" name="email" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>IC No./Passport No.</label>
+                  <input type="text" name="identificationNo" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" name="username" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" name="password" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Contact No.</label>
+                  <input type="text" name="contactNo" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" name="address" class="form-control"  placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-12 text-center">
+                <input type="submit" name="submit" value="Register" class="btn btn-primary btn-lg" style="margin-bottom:10px">
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
