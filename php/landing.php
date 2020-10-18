@@ -7,21 +7,23 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
 
     <title>MyCovidTrail | Home</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+    <nav class="navbar navbar-expand-lg navbar-light py-3" style="background: rgba(255,255,255,0.0);">
 
       <a class="navbar-brand" href="#"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
     </nav>
-    <div class="jumbotron">
-      <h1 class="display-4">Hello, world!</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-      <hr class="my-4">
+    <div class="jumbotron text-center vh-100 " style="background: rgba(255,255,255,0.0);">
+      <h1 class="display-4 my-5">Welcome to MyCovidTrail</h1>
+      <p class="lead my-3" style="font-weight:400;">The CITS is a data management tool to track Covid-19 cases. With the ability to scale irrespective of where, how and what test is carried out</p>
+      <hr class="my-5">
       <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-      <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      <p class="lead my-5">
+        <a class="btn btn-dark btn-lg" href="login.php" role="button">Getting Started</a>
       </p>
     </div>
 
