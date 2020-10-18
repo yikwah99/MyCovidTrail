@@ -25,7 +25,8 @@ if(isset($_POST['submit'])){
 
   }
 }
-
+//alert message
+include_once("alert.php");
 
 ?>
 <!doctype html>
