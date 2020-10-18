@@ -41,7 +41,7 @@ include_once("alert.php");
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="../css/style.css">
     <title>MyCovidTrail | Add New Test</title>
   </head>
   <body>
@@ -163,7 +163,7 @@ include_once("alert.php");
       
     </div>
     <hr>
-    <h3 class="text-center">Existing Covid-19 Patient List</h3>
+    <h3 class="text-center my-4">Existing Covid-19 Patient List</h3>
     <div class="table-responsive">
       <table class="table">
         <thead class="thead-dark">
