@@ -49,12 +49,13 @@ include_once("alert.php");
     <?php include 'navbar.php';?>
     <!-- Main Content -->
     <div class="container">
-      <div class="card m-5">
+      <div class="card m-4">
         <form method="POST" action="#">
           <div class='card-body'>
             <h3 class="card-title text-center">Record New Covid-19 Test</h3>
+            <hr>
             <h4 class=" text-center">Patient Detail</h4>
-            <div class="row border" style="border:10px;">
+            <div class="row border m-3 p-3" style="border:10px;">
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Full Name</label>
@@ -105,7 +106,7 @@ include_once("alert.php");
               </div>
             </div>
             <h4 class=" text-center">Test Detail</h4>
-            <div class="row border" style="border:10px;">
+            <div class="row border mx-3 p-3" style="border:10px;">
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Test Centre Name</label>
@@ -150,9 +151,10 @@ include_once("alert.php");
                   </select>
                 </div>
               </div>
-              <div class="col-md-12 text-center">
-                <input type="submit" name="submit" value="Register" class="btn btn-dark">
-              </div>
+              
+            </div>
+            <div class=" mt-2 text-center">
+              <input type="submit" name="submit" value="Register" class="btn btn-dark">
             </div>
           </div>
         </form>
