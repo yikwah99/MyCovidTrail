@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
     $centreofficerInsertSql="INSERT INTO `centreofficer` (`username`, `position`, `workplace`) VALUES ('".$_POST['username']."', 'Tester', '".$_SESSION['testcentre']."');";
     mysqli_query($con,$userInsertSql);
     mysqli_query($con,$centreofficerInsertSql);
-
+    $_SESSION['message']="New User and Tester accounts created successfully."!";
   }
 }
 //alert message
