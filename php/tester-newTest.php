@@ -7,7 +7,7 @@ include_once("database.php");
 $errormsg="";
 $testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
 $testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
-$patientResult = mysqli_query($con,"SELECT * from user,patient,covidTest WHERE user.username=patient.username AND user.username=covidTest.recipient AND covidTest.status='completed';");
+$patientResult = mysqli_query($con,"SELECT * from user,patient WHERE user.username=patient.username;");
 
 
 
@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
   $patientUsernameCheck = "select * from user,patient WHERE user.username='".$_POST['username']."'  AND password='".$_POST['password']."'AND user.username=patient.username;";
   $patientUsernameCheckRow = mysqli_num_rows(mysqli_query($con,$patientUsernameCheck));
   if ($patientUsernameCheckRow>0)
-    $errormsg="Username '".$_POST['username']."' already exist!";
+    $_SESSION['errormessage']="Username '".$_POST['username']."' already exist!";
   else{
     $userInsertSql="INSERT INTO `user` (`username`, `password`, `name`, `email`, `address`, `identificationNo`, `contactNo`) VALUES ('".$_POST['username']."', '".$_POST['password']."', '".$_POST['name']."', '".$_POST['email']."', '".$_POST['address']."', '".$_POST['identificationNo']."', '".$_POST['contactNo']."');";
     mysqli_query($con,$userInsertSql);
@@ -50,7 +50,7 @@ include_once("alert.php");
     <!-- Main Content -->
     <div class="container">
       <div class="card m-4">
-        <form method="POST" action="#">
+        <form method="POST" class="m-0" action="#">
           <div class='card-body'>
             <h3 class="card-title text-center">Record New Covid-19 Test</h3>
             <hr>
@@ -59,49 +59,49 @@ include_once("alert.php");
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Full Name</label>
-                  <input type="text" name="name" class="form-control"  placeholder="" >
+                  <input type="text" name="name" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Email Address</label>
-                  <input type="text" name="email" class="form-control"  placeholder="" >
+                  <input type="email" name="email" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>IC No./Passport No.</label>
-                  <input type="text" name="identificationNo" class="form-control"  placeholder="" >
+                  <input type="text" name="identificationNo" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Username</label>
-                  <input type="text" name="username" class="form-control"  placeholder="" >
+                  <input type="text" name="username" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" name="password" class="form-control"  placeholder="" >
+                  <input type="password" name="password" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Emergency Contact</label>
-                  <input type="text" name="emergency" class="form-control"  placeholder="" >
+                  <input type="number" name="emergency" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Contact No.</label>
-                  <input type="text" name="contactNo" class="form-control"  placeholder="" >
+                  <input type="number" name="contactNo" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Address</label>
-                  <input type="text" name="address" class="form-control"  placeholder="" >
+                  <input type="text" name="address" class="form-control"  placeholder="" required>
                 </div>
               </div>
             </div>
@@ -116,13 +116,13 @@ include_once("alert.php");
               <div class="col-md-8">
                 <div class="form-group">
                   <label>Symptoms</label>
-                  <input type="text" name="symptoms" class="form-control"  placeholder="" >
+                  <input type="text" name="symptoms" class="form-control"  placeholder="" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Test Date</label>
-                  <input name="testDate" value="<?php echo (date("Y-m-d")); ?>"class="form-control" type="date">
+                  <input name="testDate" value="<?php echo (date("Y-m-d")); ?>"class="form-control" type="date" required>
                 </div>
               </div>
               <div class="col-md-4">
@@ -153,7 +153,7 @@ include_once("alert.php");
               </div>
               
             </div>
-            <div class=" mt-2 text-center">
+            <div class="mt-3 text-center">
               <input type="submit" name="submit" value="Register" class="btn btn-dark">
             </div>
           </div>
@@ -162,6 +162,7 @@ include_once("alert.php");
       
       
     </div>
+    <hr>
     <h3 class="text-center">Existing Covid-19 Patient List</h3>
     <div class="table-responsive">
       <table class="table">
