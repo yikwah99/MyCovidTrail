@@ -10,16 +10,16 @@ if(isset($_POST['submit'])){
 
   $testcentreCheck = "select * from testcentre WHERE testcentre.centreName='".$_POST['centreName']."'";
   $testCentreCheckRow = mysqli_num_rows(mysqli_query($con,$testcentreCheck));
+
   if ($testCentreCheckRow>0)
     $errormsg="TestCentre '".$_POST['CentreName']."' already exist!";
   else{
-    $testCentreInsertSql="INSERT INTO `testcentre` (`centreName`, `Address`, `landline`) VALUES ('".$_POST['centreName ']."', '".$_POST['address']."', '".$_POST['landline']."')";
+    $testCentreInsertSql="INSERT INTO `testcentre` (`centreID`, `centreName`, `Address`, `landline`) VALUES ('".uniqid("TC")."','".$_POST['centreName ']."', '".$_POST['address']."', '".$_POST['landline']."')";
     mysqli_query($con,$testCentreInsertSql);
 
   }
 }
-//user(username,password,name,email,adress,identificationNo, contactNo)
-//patient(username,patientType,symptoms,emergency)
+
 
 ?>
 <!doctype html>
@@ -50,10 +50,11 @@ if(isset($_POST['submit'])){
 
     <div class = "Welcome">
        <!-- Supposed to say "Welcome + UserType and/or Username" Eg. "Welcome Tester Leekeathong" -->
-        <h2 strong style="padding:50px; background-color: #95B8D1;"> Welcome User! </h2>
+
 
         <div class="container">
           <div class="card m-5">
+            <form method="POST" action="#">
             <div class='card-body'>
               <h3 class="card-title text-center">Register Test Centre</h3>
               <div class="row">
@@ -76,10 +77,11 @@ if(isset($_POST['submit'])){
                   </div>
                 </div>
                 <div class="col-md-12 text-center">
-                  <input type="submit" class="btn btn-primary btn-lg">
+                  <input type="submit" name="submit" value="Register" class="btn btn-primary btn-lg">
                 </div>
               </div>
             </div>
+          </form>
           </div>
         </div>
     </div>
