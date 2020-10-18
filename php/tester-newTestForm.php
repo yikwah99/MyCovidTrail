@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
   $testInsertSql="INSERT INTO `covidtest` (`testID`, `testDate`, `status`, `result`, `resultDate`, `recipient`, `tester`, `kitID`, `location`) VALUES ('".uniqid()."', '".$_POST['testDate']."', 'pending', 'null', 'null', '".$_GET['patient']."', '".$_SESSION['username']."', '".$_POST['kitID']."', '".$_SESSION['testcentre']."');";
   
   mysqli_query($con,$testInsertSql);
-  
+  $_SESSION['message']="New Test Added for ".$_GET['patient']."!";
   header('location:tester-newTest.php');
     
   }

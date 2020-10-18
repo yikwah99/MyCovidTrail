@@ -23,11 +23,11 @@ if(isset($_POST['submit'])){
     mysqli_query($con,$patientInsertSql);
     $testInsertSql="INSERT INTO `covidtest` (`testID`, `testDate`, `status`, `result`, `resultDate`, `recipient`, `tester`, `kitID`, `location`) VALUES ('".uniqid()."', '".$_POST['testDate']."', 'pending', 'null', 'null', '".$_POST['username']."', '".$_SESSION['username']."', '".$_POST['kitID']."', '".$_SESSION['testcentre']."');";
     mysqli_query($con,$testInsertSql);
-    
+    $_SESSION['message']="New Patient and Test Added!";
   }
 }
-//user(username,password,name,email,adress,identificationNo, contactNo)
-//patient(username,patientType,symptoms,emergency)
+//alert message
+include_once("alert.php");
 
 ?>
 
