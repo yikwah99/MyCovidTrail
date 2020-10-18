@@ -19,7 +19,7 @@
     </nav>
     <div class="jumbotron text-center vh-100 " style="background: rgba(255,255,255,0.0);">
       <h1 class="display-4 my-5">Welcome to MyCovidTrail</h1>
-      <p class="lead my-3" style="font-weight:400;">The CITS is a data management tool to track Covid-19 cases. With the ability to scale irrespective of where, how and what test is carried out</p>
+      <p class="lead my-3" style="font-weight:400;">The MyCovidTrail is a data management tool to track Covid-19 cases. With the ability to scale irrespective of where, how and what test is carried out</p>
       <hr class="my-5">
       <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
       <p class="lead my-5">
