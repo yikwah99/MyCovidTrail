@@ -79,15 +79,16 @@ if(isset($_POST['submit']))
     </nav>
     <!-- Main Content -->
     <div class="container">
-      <div class="card m-5">
+      <div class="card m-5 mx-auto" style="width: 30rem;">
         <div class='card-body'>
           <h3 class="card-title text-center">Login</h3>
+          <hr>
           <form action="#" method="post">
-            <div class="form-group">
+            <div class="form-group m-5">
               <label>Username</label>
               <input type="text" name="username" class="form-control"  placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group m-5">
               <label>Password</label>
               <input type="password" name="password" class="form-control"  placeholder="">
             </div>
