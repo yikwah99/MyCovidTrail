@@ -6,23 +6,29 @@ if(!isset($_SESSION))
 include_once("database.php");
 $errormsg="";
 $testcentreResult=mysqli_query($con,"SELECT * FROM testcentre;");
-if(isset($_POST['submit'])){
+if(isset($_POST['submit']) && ($_POST['centreName']!="")){
 
   $testcentreCheck = "select * from testcentre WHERE testcentre.centreName='".$_POST['centreName']."'";
   $testCentreCheckRow = mysqli_num_rows(mysqli_query($con,$testcentreCheck));
 
   if ($testCentreCheckRow>0){
-    $errormsg="TestCentre '".$_POST['centreName']."' already exist!";
     echo '<script>alert("That Test Centre already exists!")</script>';
   }
   else{
     $testCentreInsertSql="INSERT INTO `testcentre` (`centreID`, `centreName`, `Address`, `landline`) VALUES ('".uniqid("TC")."','".$_POST['centreName']."', '".$_POST['address']."', '".$_POST['landline']."')";
     mysqli_query($con,$testCentreInsertSql);
-
+    $_SESSION['message']="New Test Centre Added!";
   }
 }
 //alert message
 include_once("alert.php");
+
+//data entry validation doesn't work yet.
+/*}
+elseif(($_POST['centreName']="") || ($_POST['landline']="") || ($_POST['address']="")){
+  echo '<script>alert("Please enter all Test Centre Details.")</script>';
+}
+*/
 
 ?>
 <!doctype html>
