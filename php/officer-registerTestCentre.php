@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
   $testCentreCheckRow = mysqli_num_rows(mysqli_query($con,$testcentreCheck));
 
   if ($testCentreCheckRow>0)
-    $errormsg="TestCentre '".$_POST['CentreName']."' already exist!";
+    $errormsg="TestCentre '".$_POST['centreName']."' already exist!";
   else{
     $testCentreInsertSql="INSERT INTO `testcentre` (`centreID`, `centreName`, `Address`, `landline`) VALUES ('".uniqid("TC")."','".$_POST['centreName']."', '".$_POST['address']."', '".$_POST['landline']."')";
     mysqli_query($con,$testCentreInsertSql);
