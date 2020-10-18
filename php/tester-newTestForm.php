@@ -40,12 +40,13 @@ if(isset($_POST['submit'])){
     <?php include 'navbar.php';?>
     <!-- Main Content -->
     <div class="container">
-      <div class="card m-5">
+      <div class="card mx-4 mt-4">
         <form method="POST" action="#">
           <div class='card-body'>
             <h3 class="card-title text-center">Record New Covid-19 Test</h3>
+            <hr>
             <h4 class=" text-center">Patient Detail</h4>
-            <div class="row border" style="border:10px;">
+            <div class="row border m-3 p-3" style="border:10px;">
               <?php
               $j=0;
               if (isset($_GET['patient'])){
@@ -101,7 +102,7 @@ if(isset($_POST['submit'])){
               <?php }} ?>
             </div>
             <h4 class=" text-center">Test Detail</h4>
-            <div class="row border" style="border:10px;">
+            <div class="row border m-3 p-3" style="border:10px;">
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Test Centre Name</label>
@@ -146,9 +147,10 @@ if(isset($_POST['submit'])){
                   </select>
                 </div>
               </div>
-              <div class="col-md-12 text-center">
-                <input type="submit" name="submit" value="Submit" class="btn btn-dark">
-              </div>
+              
+            </div>
+            <div class="mt-2 text-center">
+              <input type="submit" name="submit" value="Submit" class="btn btn-dark">
             </div>
           </div>
         </form>
