@@ -8,7 +8,6 @@ if(!isset($_SESSION))
 if(isset($_POST['submit']))
 {
   include_once("database.php");
-  $check = "";
   $username=$_POST['username'];
   $password=$_POST['password'];
 
@@ -24,7 +23,7 @@ if(isset($_POST['submit']))
       $patientresult = mysqli_query($con,$patientsql);
       $patientrow = mysqli_fetch_assoc($patientresult);
       if(!$patientrow){
-        $check="Wrong Username and Password";
+        $_SESSION['errormessage']="Wrong Combination of Username and Password";
       }
       else{
         $_SESSION['username'] =$username;
@@ -57,6 +56,8 @@ if(isset($_POST['submit']))
     $check="Username and Password must not be empty!";
 
 }
+//alert message
+include_once("alert.php");
 ?>
 
 <!doctype html>
