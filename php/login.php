@@ -56,8 +56,6 @@ if(isset($_POST['submit']))
     $check="Username and Password must not be empty!";
 
 }
-//alert message
-include_once("alert.php");
 ?>
 
 <!doctype html>
