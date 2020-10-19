@@ -5,8 +5,7 @@ if(!isset($_SESSION))
 } 
 include_once("database.php");
 $errormsg="";
-$testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
-$testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
+$testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."' AND testkit.availableStock>0;");
 $patientResult = mysqli_query($con,"SELECT * from user,patient WHERE user.username=patient.username;");
 
 
@@ -133,7 +132,7 @@ include_once("alert.php");
                     foreach($testkitResult as $testKitRow){
                     //while($testKitRow=mysqli_fetch_array($testkitResult)){
                       ?>
-                      <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo $testKitRow["testName"]; ?></option>
+                      <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo ($testKitRow["testName"]."(".$testKitRow["availableStock"].")"); ?></option>
                     <?php ;}
                     ?>
                   </select>
