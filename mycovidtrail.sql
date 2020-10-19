@@ -134,8 +134,10 @@ CREATE TABLE `testkit` (
 
 INSERT INTO `testkit` (`kitID`, `testName`, `availableStock`, `location`) VALUES
 ('tk01', 'Antigen Test', 15, 'TC01'),
-('tk01', 'Antigen Test', 50, 'TC02'),
-('tk02', 'PCR', 20, 'TC01');
+('tk02', 'Antigen Test', 50, 'TC02'),
+('tk03', 'PCR', 20, 'TC01');
+('tk04', 'COVID-19 IgM/IgG Duo', 1, 'TC01');
+('tk05', 'Rapid Test Kit', 0, 'TC01');
 
 -- --------------------------------------------------------
 
