@@ -137,7 +137,7 @@ INSERT INTO `testkit` (`kitID`, `testName`, `availableStock`, `location`) VALUES
 ('tk02', 'Antigen Test', 50, 'TC02'),
 ('tk03', 'PCR', 20, 'TC01'),
 ('tk04', 'COVID-19 IgM/IgG Duo', 1, 'TC01'),
-('tk05', 'Rapid Test Kit', 1, 'TC01');
+('tk05', 'Rapid Test Kit', 0, 'TC01');
 
 -- --------------------------------------------------------
 
