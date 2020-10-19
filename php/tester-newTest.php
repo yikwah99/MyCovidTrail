@@ -133,7 +133,7 @@ include_once("alert.php");
                     foreach($testkitResult as $testKitRow){
                     //while($testKitRow=mysqli_fetch_array($testkitResult)){
                       ?>
-                      <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo $testKitRow["kitID"]; ?></option>
+                      <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo $testKitRow["testName"]; ?></option>
                     <?php ;}
                     ?>
                   </select>

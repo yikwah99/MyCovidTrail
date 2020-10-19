@@ -116,7 +116,7 @@ if(isset($_POST['submit'])){
               <div class="form-group">
                 <label>Test Kit</label>
                 <select id="inputState" name="kitID" class="form-control" disabled>
-                  <option value="<?php echo $testRow["kitID"]; ?>"><?php echo $testRow["kitID"]; ?></option>
+                  <option value="<?php echo $testRow["kitID"]; ?>"><?php echo $testRow["testName"]; ?></option>
                 </select>
               </div>
             </div>

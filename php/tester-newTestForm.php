@@ -132,7 +132,7 @@ if(isset($_POST['submit'])){
                     foreach($testkitResult as $testKitRow){
                     //while($testKitRow=mysqli_fetch_array($testkitResult)){
                       ?>
-                      <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo $testKitRow["kitID"]; ?></option>
+                      <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo ($testKitRow["testName"]."(".$testKitRow["availableStock"].")"); ?></option>
                     <?php ;}
                     ?>
                   </select>
