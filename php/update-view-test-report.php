@@ -32,7 +32,7 @@ include_once("alert.php");
     <!-- Navbar -->
     <?php include 'navbar.php';?>
     <!-- Main Content -->
-    <h3 class="text-center">Existing Covid-19 Patient List</h3>
+    <h3 class="text-center">Existing Covid-19 Test List</h3>
     <div class="table-responsive">
       <table class="table">
         <thead class="thead-dark">
@@ -53,6 +53,7 @@ include_once("alert.php");
           
           <?php
           $j=0;
+          if (mysqli_num_rows($testListResult)>0){
           foreach($testListResult as $testListRow){ ?>
           <tr>
             <th scope="row"><?php echo($j+1) ?></th>
@@ -82,7 +83,10 @@ include_once("alert.php");
             </td>
           </tr>
           <?php    
-          $j++;}
+          $j++;}}
+          else{
+            echo"<td colspan='10'>No Record Found</td>";
+          }
           ?>
         </tbody>
       </table>

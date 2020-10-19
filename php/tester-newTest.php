@@ -162,7 +162,7 @@ include_once("alert.php");
       
     </div>
     <hr>
-    <h3 class="text-center my-4">Existing Covid-19 Patient List</h3>
+    <h3 class="text-center my-4">Existing Covid-19 Test List</h3>
     <div class="table-responsive">
       <table class="table">
         <thead class="thead-dark">
