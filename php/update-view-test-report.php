@@ -69,14 +69,14 @@ include_once("alert.php");
             <td>
               <!--<button type="button" class="btn btn-dark">New Test</button>-->
               <a class="btn btn-dark" href='<?php 
-              if($testListRow["status"]=="pending"){
+              if($testListRow["status"]=="pending"&&$_SESSION['role']=='tester'){
                 echo ("update-test-report-form.php?test=".$testListRow["testID"]);
               }
               else{
                 echo ("view-test-report-form.php?test=".$testListRow["testID"]);
               }
               ?>'>
-                <?php if($testListRow["status"]=="pending"){echo("Update");}
+                <?php if($testListRow["status"]=="pending"&&$_SESSION['role']=='tester'){echo("Update");}
                 else{echo("View");}
                 ?>
               </a>
