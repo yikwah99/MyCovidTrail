@@ -11,7 +11,7 @@ $patientResult = mysqli_query($con,"SELECT * from user,patient WHERE user.userna
 
 
 if(isset($_POST['submit'])){
-  $patientUsernameCheck = "select * from user,patient WHERE user.username='".$_POST['username']."'  AND password='".$_POST['password']."'AND user.username=patient.username;";
+  $patientUsernameCheck = "select * from user,patient WHERE user.username='".$_POST['username']."'AND user.username=patient.username;";
   $patientUsernameCheckRow = mysqli_num_rows(mysqli_query($con,$patientUsernameCheck));
   if ($patientUsernameCheckRow>0)
     $_SESSION['errormessage']="Username '".$_POST['username']."' already exist!";
