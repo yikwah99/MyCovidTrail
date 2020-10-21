@@ -3,6 +3,10 @@ if(!isset($_SESSION))
 {
     session_start();
 }
+include_once("database.php");
+$testSql = "SELECT * from user,patient,covidtest,testcentre,testkit WHERE covidtest.recipient=patient.username AND patient.username=user.username AND testkit.kitID=covidtest.kitID AND testcentre.centreID=covidtest.location AND covidtest.recipient='".$_SESSION['username']."';";
+$testResult = mysqli_query($con,$testSql);
+
 //alert message
 include_once("alert.php");
 ?>
@@ -24,64 +28,148 @@ include_once("alert.php");
     <?php include 'navbar.php';?>
     
     <!-- Main Content -->
-    <div class="container">
-      <div class="card m-5">
-        <div class='card-body'>
-          <h3 class="card-title text-center">Covid-19 Test Report</h3>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
+    <div id="accordion">
+      <div class="container">
+        <?php 
+        if (mysqli_num_rows($testResult)>0){
+          foreach($testResult as $testRow){
+        ?>
+        <div class="card">
+          
+          <div class="card-header" id="<?php echo "Test ID: ".$testRow["testID"]; ?>" data-toggle="collapse" data-target="#collapseOne<?php echo "Test ID: ".$testRow["testID"]; ?>" aria-expanded="true" aria-controls="collapseOne<?php echo "Test ID: ".$testRow["testID"]; ?>">
+                <?php echo "Test ID: ".$testRow["testID"]; ?>
+            <i class="fas fa-chevron-circle-down float-right"></i>
+          </div>
+
+          <div id="collapseOne<?php echo "Test ID: ".$testRow["testID"]; ?>" class="collapse" aria-labelledby="<?php echo "Test ID: ".$testRow["testID"]; ?>" data-parent="#accordion">
+            <div class="card-body">
+              <h3 class="card-title text-center">Update Covid-19 Test Result</h3>
+              <h4 class=" text-center">Patient Detail</h4>
+              
+              <div class="row border" style="border:10px;">
+                
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" class="form-control"  placeholder="<?php echo $testRow["username"]; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="text" name="email" class="form-control"  placeholder="<?php echo $testRow["email"]; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>IC No./Passport No.</label>
+                    <input type="text" name="identificationNo" class="form-control"  placeholder="<?php echo $testRow["identificationNo"]; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control"  placeholder="<?php echo $testRow["username"]; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Emergency Contact</label>
+                    <input type="text" name="emergency" class="form-control"  placeholder="<?php echo $testRow["emergencyContact"]; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Contact No.</label>
+                    <input type="text" name="contactNo" class="form-control"  placeholder="<?php echo $testRow["contactNo"]; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" name="address" class="form-control"  placeholder="<?php echo $testRow["address"]; ?>" disabled>
+                  </div>
+                </div>
+
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Result Date</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
+              <!-- Test Detail -->
+              <h4 class=" text-center">Test Detail</h4>
+              <div class="row border" style="border:10px;">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Test Centre Name</label>
+                    <input type="text" name="testcentre" class="form-control"  value="<?php echo $testRow["centreName"]; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>Symptoms</label>
+                    <input type="text" name="symptoms" class="form-control"  placeholder="<?php echo $testRow["symptoms"]; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Test Date</label>
+                    <input name="testDate" value="<?php echo $testRow["testDate"]; ?>"class="form-control" type="date" disabled>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Test Kit</label>
+                    <select id="inputState" name="kitID" class="form-control" disabled>
+                      <option value="<?php echo $testRow["kitID"]; ?>"><?php echo $testRow["testName"]; ?></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Patient Type</label>
+                    <select id="inputState" name="patientType" class="form-control" disabled>
+                      <option value ="<?php echo $testRow["patientType"]; ?>" selected><?php echo $testRow["patientType"]; ?></option>
+                    </select>
+                  </div>
+                </div>
+
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Test Type</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
+              <!-- Test Result -->
+              <h4 class=" text-center">Test Result</h4>
+              <div class="row border" style="border:10px;">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Test ID</label>
+                    <input type="text" name="testID" class="form-control"  value="<?php echo $testRow['testID']; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Tester</label>
+                    <input type="text" name="tester" class="form-control"  placeholder="<?php echo $testRow['tester']; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Result Date</label>
+                    <input name="resultDate" value="<?php echo $testRow['resultDate']; ?>"class="form-control" type="date" disabled>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>Test Result</label>
+                    <select id="inputState" name="result" class="form-control" disabled>
+                      <option value ="positive" selected>Positive</option>
+                      <option value ="negative">Negative</option>
+                    </select>
+                  </div>
+                </div>
+                
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Test Date</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Symptoms</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Tester</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Test Centre</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Test Result</label>
-                <input type="text" class="form-control"  placeholder="" disabled>
-              </div>
+              
             </div>
           </div>
         </div>
+        <?php }}else{echo("No Test Added Yet");} ?>
       </div>
     </div>
-    
     
 
     <!-- Optional JavaScript -->
