@@ -144,7 +144,6 @@ include_once("alert.php");
                 <div class="form-group">
                   <label>Patient Type</label>
                   <select id="inputState" name="patientType" class="form-control">
-                    <option value ="returnee" selected>Returnee</option>
                     <option value ="quarantined">Quarantined</option>
                     <option value ="close contact">Close contact</option>
                     <option value ="infect">Infected</option>
