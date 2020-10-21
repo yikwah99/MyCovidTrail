@@ -1,0 +1,10 @@
+Separate the CentreOfficer class&table into two separate specialization classes (Tester and Manager)
+
+Add new column called "Manager" in TestCentre table with check constraint (must exist in Manager table). 
+The data input for the Manager column should be done automatically based on the Manager who is currently logged into the system.
+
+Suggested functionality - Emailing patients upon the successful creation of their user&patient account
+
+Record Deduction - add into new patient page
+
+UX changes -  navbar and/or navtab visibility should be increased.
