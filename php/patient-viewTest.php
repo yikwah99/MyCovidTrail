@@ -36,8 +36,16 @@ include_once("alert.php");
         ?>
         <div class="card">
           
-          <div class="card-header" id="<?php echo "Test ID: ".$testRow["testID"]; ?>" data-toggle="collapse" data-target="#collapseOne<?php echo "Test ID: ".$testRow["testID"]; ?>" aria-expanded="true" aria-controls="collapseOne<?php echo "Test ID: ".$testRow["testID"]; ?>">
-                <?php echo "Test ID: ".$testRow["testID"]; ?>
+          <div class="card-header" id="<?php echo "Test ID: ".$testRow["testID"]; ?>" data-toggle="collapse" data-target="#collapseOne<?php echo "Test ID: ".$testRow["testID"]; ?>" aria-expanded="true" aria-controls="collapseOne
+            <?php echo "Test ID: ".$testRow["testID"]; ?>">
+            <?php 
+            echo "Test Date: ".$testRow["testDate"]; 
+            if ($testRow["status"]=="pending")
+              echo "<i class='fas fa-hourglass-half mx-3 text-warning'></i>";
+            else
+              echo "<i class='fas fa-check-circle mx-3 text-success'></i>";
+            
+            ?>
             <i class="fas fa-chevron-circle-down float-right"></i>
           </div>
 
@@ -156,8 +164,7 @@ include_once("alert.php");
                   <div class="form-group">
                     <label>Test Result</label>
                     <select id="inputState" name="result" class="form-control" disabled>
-                      <option value ="positive" selected>Positive</option>
-                      <option value ="negative">Negative</option>
+                      <option value ="positive" selected><?php echo $testRow['result']; ?></option>
                     </select>
                   </div>
                 </div>
