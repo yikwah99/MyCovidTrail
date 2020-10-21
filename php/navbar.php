@@ -9,7 +9,7 @@
       
       <?php if(!isset($_SESSION)){session_start();}  if($_SESSION['role']=="manager"){ ?>
       <!--Officer Navbar-->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="officer-manageTestKit.php">Manage Test Kit Stock</a>
       </li>
       <li class="nav-item">
@@ -29,7 +29,7 @@
       <?php }else if ($_SESSION['role']=="tester"){ ?>
       <!--Tester Navbar-->
       <li class="nav-item">
-        <a class="nav-link" href="tester-newTest.php">Record New Test</a>
+        <a class="nav-link navbar-right" href="tester-newTest.php">Record New Test</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="update-view-test-report.php">Update/View Test Report</a>
@@ -40,7 +40,7 @@
       
       
       <li class="nav-item">
-        <a class="nav-link navbar-right" href="logout.php">Logout</a>
+        <a class="nav-link" href="logout.php">Logout</a>
       </li>
     </ul>
   </div>
