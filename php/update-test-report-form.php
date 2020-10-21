@@ -5,7 +5,7 @@ if(!isset($_SESSION))
 } 
 include_once("database.php");
 if (isset($_GET['test'])){
-  $testResult = mysqli_query($con,"SELECT * from user,patient,covidtest WHERE user.username=patient.username AND covidtest.recipient=patient.username AND covidtest.testID='".$_GET['test']."';");
+  $testResult = mysqli_query($con,"SELECT * from user,patient,covidtest,testkit WHERE user.username=patient.username AND covidtest.kitID=testkit.kitID AND covidtest.recipient=patient.username AND covidtest.testID='".$_GET['test']."';");
 }
 if(isset($_POST['submit'])){
   $testUpdateSql="UPDATE covidtest SET result = '".$_POST['result']."', resultDate = '".$_POST['resultDate']."', status ='completed' WHERE covidtest.testID = '".$_GET['test']."';";
@@ -116,7 +116,7 @@ if(isset($_POST['submit'])){
               <div class="form-group">
                 <label>Test Kit</label>
                 <select id="inputState" name="kitID" class="form-control" disabled>
-                  <option value="<?php echo $testRow["kitID"]; ?>"><?php echo $testRow["kitID"]; ?></option>
+                  <option value="<?php echo $testRow["kitID"]; ?>"><?php echo $testRow["testName"]; ?></option>
                 </select>
               </div>
             </div>
