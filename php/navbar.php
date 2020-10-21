@@ -1,11 +1,12 @@
+
 <nav class="navbar navbar-expand-lg navbar-light py-3" style="background:rgba(255,255,255,0.0);">
   
-  <a class="navbar-brand" href="#"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
+  <a class="navbar-brand logo" href="#"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
       
       <?php if(!isset($_SESSION)){session_start();}  if($_SESSION['role']=="manager"){ ?>
       <!--Officer Navbar-->
@@ -39,9 +40,8 @@
       
       
       
-      <li class="nav-item">
-        <a class="nav-link" href="logout.php">Logout</a>
-      </li>
+      
     </ul>
+      <a class="btn btn-outline-dark logout-btn" href="logout.php">Logout</a>
   </div>
 </nav>
