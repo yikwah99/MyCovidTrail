@@ -6,7 +6,7 @@ background-size: cover;
 }
 
 tbody th,td{
-  background: rgba(255,255,255,1.0);
+  background: rgba(255,255,255,1);
 }
 
 thead{
@@ -15,4 +15,8 @@ thead{
 
 nav li a{
   font-weight: 500;
+}
+
+nav li{
+  border-left: 1px black solid;
 }
