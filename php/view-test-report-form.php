@@ -1,3 +1,14 @@
+<?php 
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+include_once("database.php");
+if (isset($_GET['test'])){
+  $testResult = mysqli_query($con,"SELECT * from user,patient,covidtest,testkit WHERE user.username=patient.username AND covidtest.kitID=testkit.kitID AND covidtest.recipient=patient.username AND covidtest.testID='".$_GET['test']."';");
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,112 +27,138 @@
     <!-- Main Content -->
     <div class="container">
       <div class="card m-5">
-        <form method="POST" action="#">
-          <div class='card-body'>
-            <h3 class="card-title text-center">Record New Covid-19 Test</h3>
-            <h4 class=" text-center">Patient Detail</h4>
-            <div class="row border" style="border:10px;">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Full Name</label>
-                  <input type="text" name="name" class="form-control"  placeholder="" >
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Email Address</label>
-                  <input type="text" name="email" class="form-control"  placeholder="" >
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>IC No./Passport No.</label>
-                  <input type="text" name="identificationNo" class="form-control"  placeholder="" >
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Username</label>
-                  <input type="text" name="username" class="form-control"  placeholder="" >
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Password</label>
-                  <input type="password" name="password" class="form-control"  placeholder="" >
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Emergency Contact</label>
-                  <input type="text" name="emergency" class="form-control"  placeholder="" >
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Contact No.</label>
-                  <input type="text" name="contactNo" class="form-control"  placeholder="" >
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Address</label>
-                  <input type="text" name="address" class="form-control"  placeholder="" >
-                </div>
+        <div class='card-body'>
+          <h3 class="card-title text-center">Update Covid-19 Test Result</h3>
+          <h4 class=" text-center">Patient Detail</h4>
+          <div class="row border" style="border:10px;">
+            <?php
+            if (isset($_GET['test'])){
+            while($testRow=mysqli_fetch_array($testResult)){ ?>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" class="form-control"  placeholder="<?php echo $testRow["username"]; ?>" disabled>
               </div>
             </div>
-            <h4 class=" text-center">Test Detail</h4>
-            <div class="row border" style="border:10px;">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Test Centre Name</label>
-                  <input type="text" name="testcentre" class="form-control"  value="<?php echo $_SESSION['testcentre']; ?>" disabled>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <label>Symptoms</label>
-                  <input type="text" name="symptoms" class="form-control"  placeholder="" >
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Test Date</label>
-                  <input name="testDate" value="<?php echo (date("Y-m-d")); ?>"class="form-control" type="date">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Test Kit</label>
-                  <select id="inputState" name="kitID" class="form-control">
-                    <?php
-                    foreach($testkitResult as $testKitRow){
-                    //while($testKitRow=mysqli_fetch_array($testkitResult)){
-                      ?>
-                      <option value="<?php echo $testKitRow["kitID"]; ?>"><?php echo $testKitRow["kitID"]; ?></option>
-                    <?php ;}
-                    ?>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Patient Type</label>
-                  <select id="inputState" name="patientType" class="form-control">
-                    <option value ="returnee" selected>Returnee</option>
-                    <option value ="quarantined">Quarantined</option>
-                    <option value ="close contact">Close contact</option>
-                    <option value ="infect">Infected</option>
-                    <option value ="suspected">Suspected</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-12 text-center">
-                <input type="submit" name="submit" value="Register" class="btn btn-dark">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="text" name="email" class="form-control"  placeholder="<?php echo $testRow["email"]; ?>" disabled>
               </div>
             </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>IC No./Passport No.</label>
+                <input type="text" name="identificationNo" class="form-control"  placeholder="<?php echo $testRow["identificationNo"]; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control"  placeholder="<?php echo $testRow["username"]; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control"  placeholder="<?php echo $testRow["password"]; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Emergency Contact</label>
+                <input type="text" name="emergency" class="form-control"  placeholder="<?php echo $testRow["emergencyContact"]; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Contact No.</label>
+                <input type="text" name="contactNo" class="form-control"  placeholder="<?php echo $testRow["contactNo"]; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" name="address" class="form-control"  placeholder="<?php echo $testRow["address"]; ?>" disabled>
+              </div>
+            </div>
+
           </div>
-        </form>
+          <!-- Test Detail -->
+          <h4 class=" text-center">Test Detail</h4>
+          <div class="row border" style="border:10px;">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Test Centre Name</label>
+                <input type="text" name="testcentre" class="form-control"  value="<?php echo $_SESSION['testcentre']; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <label>Symptoms</label>
+                <input type="text" name="symptoms" class="form-control"  placeholder="<?php echo $testRow["symptoms"]; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Test Date</label>
+                <input name="testDate" value="<?php echo $testRow["testDate"]; ?>"class="form-control" type="date" disabled>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Test Kit</label>
+                <select id="inputState" name="kitID" class="form-control" disabled>
+                  <option value="<?php echo $testRow["kitID"]; ?>"><?php echo $testRow["testName"]; ?></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Patient Type</label>
+                <select id="inputState" name="patientType" class="form-control" disabled>
+                  <option value ="<?php echo $testRow["patientType"]; ?>" selected><?php echo $testRow["patientType"]; ?></option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <!-- Test Result -->
+          
+          <h4 class=" text-center">Test Result</h4>
+          <div class="row border" style="border:10px;">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Test ID</label>
+                <input type="text" name="testID" class="form-control"  value="<?php echo $testRow['testID']; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Tester</label>
+                <input type="text" name="tester" class="form-control"  placeholder="<?php echo $testRow['tester']; ?>" disabled>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Result Date</label>
+                <input name="resultDate" value="<?php echo $testRow["resultDate"]; ?>"class="form-control" type="date" disabled>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <label>Test Result</label>
+                <select id="inputState" name="result" class="form-control" disabled>
+                  <option selected><?php echo $testRow["result"]; ?></option>
+                </select>
+              </div>
+            </div>
+            <?php }} ?>
+          </div>
+          <div class="col-md-12 text-center">
+            <button class="btn btn-dark" onclick="window.location.href='update-view-test-report.php'">Return</button>
+          </div>
+        </div>
       </div>
     </div>
   </body>
