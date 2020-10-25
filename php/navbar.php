@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light py-3" style="background:rgba(255,255,255,0.0);">
   
-  <a class="navbar-brand logo" href="#"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
+  <a class="navbar-brand logo" href="<?php if ($_SESSION['role']=="manager"){echo("officer-registerTestCentre.php");} else if ($_SESSION['role']=="patient"){echo("patient-viewTest.php");}else{echo("tester-newTest.php");} ?>"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
