@@ -10,29 +10,29 @@
       
       <?php if(!isset($_SESSION)){session_start();}  if($_SESSION['role']=="manager"){ ?>
       <!--Officer Navbar-->
-      <li class="nav-item">
+      <li class="nav-item <?php if ($_SESSION['currentPage']=="Manage Test Kit Stock"){echo("active");} ?>">
         <a class="nav-link" href="officer-manageTestKit.php">Manage Test Kit Stock</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <?php if ($_SESSION['currentPage']=="Register Test Centre Officer"){echo("active");} ?>">
         <a class="nav-link" href="officer-registerOfficer.php">Register Test Centre Officer</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <?php if ($_SESSION['currentPage']=="Register Test Centre"){echo("active");} ?>">
         <a class="nav-link" href="officer-registerTestCentre.php">Register Test Centre</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <?php if ($_SESSION['currentPage']=="Update/View Test Report"){echo("active");} ?>">
         <a class="nav-link" href="update-view-test-report.php">Update/View Test Report</a>
       </li>
       <?php }else if ($_SESSION['role']=="patient"){ ?>
       <!--Patient Navbar-->
-      <li class="nav-item">
+      <li class="nav-item <?php if ($_SESSION['currentPage']=="View Test Result"){echo("active");} ?>">
         <a class="nav-link" href="patient-viewTest.php">View Test Result</a>
       </li>
       <?php }else if ($_SESSION['role']=="tester"){ ?>
       <!--Tester Navbar-->
-      <li class="nav-item">
+      <li class="nav-item <?php if ($_SESSION['currentPage']=="Record New Test"){echo("active");} ?>">
         <a class="nav-link navbar-right" href="tester-newTest.php">Record New Test</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <?php if ($_SESSION['currentPage']=="Update/View Test Report"){echo("active");} ?>">
         <a class="nav-link" href="update-view-test-report.php">Update/View Test Report</a>
       </li>
       <?php }?>

@@ -3,6 +3,7 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 } 
+$_SESSION['currentPage']="Update/View Test Report";
 include_once("database.php");
 if($_SESSION['role']=="manager"){
   $testListResult=mysqli_query($con,"SELECT * FROM covidtest WHERE location='".$_SESSION['testcentre']."';");

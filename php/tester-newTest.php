@@ -3,6 +3,7 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 } 
+$_SESSION['currentPage']="Record New Test";
 include_once("database.php");
 $errormsg="";
 $testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."' AND testkit.availableStock>0;");

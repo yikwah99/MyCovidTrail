@@ -1,3 +1,10 @@
+<?php
+if(!isset($_SESSION))
+{
+    session_start();
+}
+$_SESSION['currentPage']="Manage Test Kit Stock";
+?>
 <!doctype html>
 <html lang="en">
   <head>

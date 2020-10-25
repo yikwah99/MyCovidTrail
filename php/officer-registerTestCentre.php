@@ -3,6 +3,7 @@ if(!isset($_SESSION))
 {
     session_start();
 }
+$_SESSION['currentPage']="Register Test Centre";
 include_once("database.php");
 $errormsg="";
 $testcentreResult=mysqli_query($con,"SELECT * FROM testcentre;");
