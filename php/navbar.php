@@ -58,7 +58,7 @@
       echo("<li class='breadcrumb-item active'><a href='".$_SESSION['currentPageFileName']."'>".$_SESSION['currentPage']."</a></li>");
     }
     else{
-      echo("<li class='breadcrumb-item active'>".$_SESSION['currentPage']."</a></li>");
+      echo("<li class='breadcrumb-item'>".$_SESSION['currentPage']."</a></li>");
     } ?>
     
     <?php if(isset($_SESSION['secondPage'])){ ?>
