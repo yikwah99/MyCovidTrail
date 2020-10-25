@@ -3,6 +3,7 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 } 
+$_SESSION['secondPage']="Update Test Report";
 include_once("database.php");
 if (isset($_GET['test'])){
   $testResult = mysqli_query($con,"SELECT * from user,patient,covidtest,testkit WHERE user.username=patient.username AND covidtest.kitID=testkit.kitID AND covidtest.recipient=patient.username AND covidtest.testID='".$_GET['test']."';");

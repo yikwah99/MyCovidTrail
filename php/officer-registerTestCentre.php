@@ -4,6 +4,8 @@ if(!isset($_SESSION))
     session_start();
 }
 $_SESSION['currentPage']="Register Test Centre";
+$_SESSION['currentPageFileName']="officer-registerTestCentre.php";
+unset($_SESSION["secondPage"]);
 include_once("database.php");
 $errormsg="";
 $testcentreResult=mysqli_query($con,"SELECT * FROM testcentre;");

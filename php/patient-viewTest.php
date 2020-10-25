@@ -4,6 +4,8 @@ if(!isset($_SESSION))
     session_start();
 }
 $_SESSION['currentPage']="View Test Result";
+$_SESSION['currentPageFileName']="patient-viewTest.php";
+unset($_SESSION["secondPage"]);
 include_once("database.php");
 $testSql = "SELECT * from user,patient,covidtest,testcentre,testkit WHERE covidtest.recipient=patient.username AND patient.username=user.username AND testkit.kitID=covidtest.kitID AND testcentre.centreID=covidtest.location AND covidtest.recipient='".$_SESSION['username']."';";
 $testResult = mysqli_query($con,$testSql);

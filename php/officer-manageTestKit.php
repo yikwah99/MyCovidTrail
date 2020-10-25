@@ -4,6 +4,8 @@ if(!isset($_SESSION))
     session_start();
 }
 $_SESSION['currentPage']="Manage Test Kit Stock";
+$_SESSION['currentPageFileName']="officer-manageTestKit.php";
+unset($_SESSION["secondPage"]);
 ?>
 <!doctype html>
 <html lang="en">

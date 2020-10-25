@@ -1,7 +1,14 @@
 
-<nav class="navbar navbar-expand-lg navbar-light py-3" style="background:rgba(255,255,255,0.0);">
+<nav class="navbar navbar-expand-lg navbar-light py-3 breadcrumb" style="background:rgba(255,255,255,0.0);" aria-label="breadcrumb">
   
-  <a class="navbar-brand logo" href="<?php if ($_SESSION['role']=="manager"){echo("officer-registerTestCentre.php");} else if ($_SESSION['role']=="patient"){echo("patient-viewTest.php");}else{echo("tester-newTest.php");} ?>"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
+  <a class="navbar-brand logo" href="<?php 
+  if ($_SESSION['role']=="manager"){
+    echo("officer-registerTestCentre.php");} 
+  else if ($_SESSION['role']=="patient"){
+    echo("patient-viewTest.php");}
+  else{
+       echo("tester-newTest.php");} ?>
+  "><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -44,4 +51,18 @@
     </ul>
       <a class="btn btn-outline-dark logout-btn" href="logout.php">Logout</a>
   </div>
+</nav>
+<nav>
+  <ol class="breadcrumb" style="background:rgba(255,255,255,0.0);">
+    <?php if(isset($_SESSION['secondPage'])){
+      echo("<li class='breadcrumb-item active'><a href='".$_SESSION['currentPageFileName']."'>".$_SESSION['currentPage']."</a></li>");
+    }
+    else{
+      echo("<li class='breadcrumb-item active'>".$_SESSION['currentPage']."</a></li>");
+    } ?>
+    
+    <?php if(isset($_SESSION['secondPage'])){ ?>
+    <li class="breadcrumb-item"><?php echo($_SESSION['secondPage']); ?></li>
+    <?php }?>
+  </ol>
 </nav>
