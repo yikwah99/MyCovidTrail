@@ -18,12 +18,37 @@
 
       <a class="navbar-brand" href="#"><i class="fas fa-user-nurse mr-2"></i>MyCovidTrail</a>
     </nav>
-    <div class="jumbotron text-center vh-100 " style="background: rgba(255,255,255,0.0);">
-      <h1 class="display-4 my-5">Welcome to MyCovidTrail</h1>
+    <div id="carouselExampleIndicators" class="carousel slide vh-30" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="../img/landing1.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="../img/landing2.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="../img/landing3.jpg" alt="Third slide">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div class="jumbotron text-center " style="background: rgba(255,255,255,0.0);">
+      <h1 class="display-4">Welcome to MyCovidTrail</h1>
       <p class="lead my-3" style="font-weight:400;">The MyCovidTrail is a data management tool to track Covid-19 cases. With the ability to scale irrespective of where, how and what test is carried out</p>
-      <hr class="my-5">
-      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-      <p class="lead my-5">
+      <hr class="my-3">
+      <p class="lead">
         <a class="btn btn-dark btn-lg" href="login.php" role="button">Getting Started</a>
       </p>
     </div>

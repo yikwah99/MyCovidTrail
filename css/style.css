@@ -16,3 +16,7 @@ thead{
 nav li a, .logout-btn{
   font-weight: 700;
 }
+
+.carousel-item {
+  max-height: 450px;
+}
