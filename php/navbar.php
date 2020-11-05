@@ -27,7 +27,7 @@
         <a class="nav-link" href="officer-registerTestCentre.php">Register Test Centre</a>
       </li>
       <li class="nav-item <?php if ($_SESSION['currentPage']=="Update/View Test Report"){echo("active");} ?>">
-        <a class="nav-link" href="update-view-test-report.php">Update/View Test Report</a>
+        <a class="nav-link" href="update-view-test-report.php">Generate Test Report</a>
       </li>
       <?php }else if ($_SESSION['role']=="patient"){ ?>
       <!--Patient Navbar-->
