@@ -38,7 +38,7 @@ include_once("alert.php");
         if (mysqli_num_rows($testResult)>0){
           foreach($testResult as $testRow){
         ?>
-        <div class="card">
+        <div class="card my-3">
           
           <div class="card-header" id="<?php echo "Test ID: ".$testRow["testID"]; ?>" data-toggle="collapse" data-target="#collapseOne<?php echo "Test ID: ".$testRow["testID"]; ?>" aria-expanded="true" aria-controls="collapseOne
             <?php echo "Test ID: ".$testRow["testID"]; ?>">
