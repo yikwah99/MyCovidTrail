@@ -57,7 +57,7 @@ if(isset($_POST['submit']))
 
 }
 //alert message
-include_once("alert.php");
+include_once("error-alert.php");
 ?>
 
 <!doctype html>

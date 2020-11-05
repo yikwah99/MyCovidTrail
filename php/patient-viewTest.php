@@ -168,7 +168,7 @@ include_once("alert.php");
                   <div class="form-group">
                     <label>Test Result</label>
                     <select id="inputState" name="result" class="form-control" disabled>
-                      <option value ="positive" selected><?php echo $testRow['result']; ?></option>
+                      <option selected><?php echo $testRow['result']; ?></option>
                     </select>
                   </div>
                 </div>

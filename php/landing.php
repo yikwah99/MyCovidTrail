@@ -44,7 +44,7 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-    <div class="jumbotron text-center " style="background: rgba(255,255,255,0.0);">
+    <div class="jumbotron text-light text-center " style="background: rgba(255,255,255,0.0);">
       <h1 class="display-4">Welcome to MyCovidTrail</h1>
       <p class="lead my-3" style="font-weight:400;">The MyCovidTrail is a data management tool to track Covid-19 cases. With the ability to scale irrespective of where, how and what test is carried out</p>
       <hr class="my-3">
