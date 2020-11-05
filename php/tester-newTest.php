@@ -26,8 +26,9 @@ if(isset($_POST['submit'])){
     $testInsertSql="INSERT INTO `covidtest` (`testID`, `testDate`, `status`, `result`, `resultDate`, `recipient`, `tester`, `kitID`, `location`) VALUES ('".uniqid("CT")."', '".$_POST['testDate']."', 'pending', 'null', 'null', '".$_POST['username']."', '".$_SESSION['username']."', '".$_POST['kitID']."', '".$_SESSION['testcentre']."');";
     mysqli_query($con,$testInsertSql);
     $testkitUpdateSql="UPDATE testkit SET availableStock=availableStock-1 WHERE kitID='".$_POST['kitID']."' AND location='".$_SESSION['testcentre']."';";
-  mysqli_query($con,$testkitUpdateSql);
+    mysqli_query($con,$testkitUpdateSql);
     $_SESSION['message']="New Patient and Test Added!";
+    header("Refresh:0");
   }
 }
 //alert message
