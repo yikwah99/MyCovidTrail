@@ -10,10 +10,10 @@ include_once("database.php");
   $testKitResult = mysqli_query($con, "SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
 include_once("alert.php");
 if(isset($_POST['submit'])){
-  $testKitCheck =  "select * from testkit where testName = '".$_POST['tkName']."';";
+  $testKitCheck =  "select * from testkit where testkit.testName = '".$_POST['tkName']."';";
   $testKitCheckRow = mysqli_num_rows(mysqli_query($con,$testKitCheck));
   if ($testKitCheckRow>0) {
-    echo '<script>alert("The TestKit '".$_POST['tkName']."' for  already exists! Update its Available Stock below instead!")</alert>';
+      $_SESSION['errormessage']="The TestKit '".$_POST['tkName']."' already exists! Update its Available Stock below instead!";
   }
   else{
     $testKitInsertSql="INSERT INTO `testkit` (`kitID`, `testName`, `availableStock`, `location`) VALUES ('".uniqid("TK")."', '".$_POST['tkName']."', '".$_POST['availableStock']."', '".$_SESSION['testcentre']."');";
@@ -97,7 +97,7 @@ if(isset($_POST['submit'])){
 
               <td>
                 <!--<button type="button" class="btn btn-dark">New Test</button>-->
-                <a class="btn btn-dark" href='tester-newTestForm.php?patient=<?php echo $patientRow["username"]; ?>'><strong>Update Stock</strong></a>
+                <a class="btn btn-dark" href='officer-UpdateTestKitStock.php?testkit%20Name=<?php echo $testKitRow["testName"]; ?>'><strong>Update Stock</strong></a>
               </td>
             </tr>
             <?php
