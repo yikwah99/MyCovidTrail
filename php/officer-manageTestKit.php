@@ -97,7 +97,7 @@ if(isset($_POST['submit'])){
 
               <td>
                 <!--<button type="button" class="btn btn-dark">New Test</button>-->
-                <a class="btn btn-dark" href='officer-UpdateTestKitStock.php?testkit%20Name=<?php echo $testKitRow["testName"]; ?>'><strong>Update Stock</strong></a>
+                <a class="btn btn-dark" href='officer-UpdateTestKitStock.php?testName=<?php echo $testKitRow["testName"]; ?>'><strong>Update Stock</strong></a>
               </td>
             </tr>
             <?php
