@@ -21,6 +21,7 @@ if(isset($_POST['submit'])){
 
     $_SESSION['message']="New TestKit '".$_POST['tkName']."' added for ".$_SESSION['testcentre']."!";
   }
+  header("Refresh:0");
 }
 
 
