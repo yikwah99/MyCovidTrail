@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-light py-3 breadcrumb" style="background:rgba(255,255,255,0.0);" aria-label="breadcrumb">
+<nav class="navbar navbar-expand-lg navbar-light sticky-top py-3 breadcrumb" style="background:rgba(112, 219, 255,1);" aria-label="breadcrumb">
   
   <a class="navbar-brand logo" href="<?php 
   if ($_SESSION['role']=="manager"){
