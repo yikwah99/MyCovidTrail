@@ -10,7 +10,7 @@ include_once("database.php");
   $testKitResult = mysqli_query($con, "SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."';");
 include_once("alert.php");
 if(isset($_POST['submit'])){
-  $testKitCheck =  "select * from testkit where testkit.testName = '".$_POST['tkName']."';";
+  $testKitCheck =  "select * from testkit where testkit.testName = '".$_POST['tkName']."' and location='".$_SESSION['testcentre']."';";
   $testKitCheckRow = mysqli_num_rows(mysqli_query($con,$testKitCheck));
   if ($testKitCheckRow>0) {
       $_SESSION['errormessage']="The TestKit '".$_POST['tkName']."' already exists! Update its Available Stock below instead!";
