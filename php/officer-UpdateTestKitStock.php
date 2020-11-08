@@ -9,13 +9,13 @@ include_once("database.php");
 if (isset($_GET['testName'])){
   $testkitResult=mysqli_query($con,"SELECT * FROM testkit WHERE location='".$_SESSION['testcentre']."' AND testkit.availableStock>0 AND testkit.testName='".$_GET['testName']."';");
 }
-$testCentreResult=mysqli_query($con,"SELECT * FROM testcentre WHERE location='".$_SESSION['testcentre']."';");
+$testCentreResult=mysqli_query($con,"SELECT * FROM testcentre WHERE centreID='".$_SESSION['testcentre']."';");
 if(isset($_POST['submit'])){
 
-  $testkitUpdateSql="UPDATE testkit SET availableStock='".$_POST['newStock']."'  WHERE testName='".$_POST['tkName']."' AND location='".$_SESSION['testcentre']."';";
+  $testkitUpdateSql="UPDATE testkit SET availableStock='".$_POST['newStock']."'  WHERE testName='".$_GET['testName']."' AND location='".$_SESSION['testcentre']."';";
   mysqli_query($con,$testkitUpdateSql);
 
-  $_SESSION['message']="New Test Added for ".$_GET['patient']."!";
+  $_SESSION['message']="Test Kit Stock updated for ".$_GET['testName']."!";
   header('location:officer-manageTestKit.php');
 
   }
@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
             <h4 class=" text-center">TestKit Details</h4>
             <?php
             $testkitRow=mysqli_fetch_array($testkitResult);
-            $testcentreRow=mysqli_fetch_array($testCentreResult)?>
+            $testcentreRow=mysqli_fetch_array($testCentreResult);?>
             <div class="row border m-3 p-3" style="border:10px;">
               <div class="col-md-4">
                 <div class="form-group">
@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
               <div class="col-md-4">
                 <div class="form-group">
                   <label>New Available Stock</label>
-                  <input type="number" name="availableStock" class="form-control"  placeholder="00" required>
+                  <input type="number" name="newStock" class="form-control"  placeholder="00" required>
                 </div>
               </div>
 

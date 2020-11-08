@@ -79,7 +79,7 @@ if(isset($_POST['submit'])){
               <th scope="col">Test Kit ID</th>
               <th scope="col">Test Name</th>
               <th scope="col">Available Stock</th>
-              <th scope="col">Test Centre Location</th>
+              <th scope="col">Test Centre Location ID</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
