@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
   $testKitCheck =  "select * from testkit where testkit.testName = '".$_POST['tkName']."' and location='".$_SESSION['testcentre']."';";
   $testKitCheckRow = mysqli_num_rows(mysqli_query($con,$testKitCheck));
   if ($testKitCheckRow>0) {
-      $_SESSION['errormessage']="The TestKit '".$_POST['tkName']."' already exists! Update its Available Stock below instead!";
+      $_SESSION['errormessage']="The TestKit '".$_POST['tkName']."' already exists in this Test Centre! Update its Available Stock below instead!";
   }
   else{
     $testKitInsertSql="INSERT INTO `testkit` (`kitID`, `testName`, `availableStock`, `location`) VALUES ('".uniqid("TK")."', '".$_POST['tkName']."', '".$_POST['availableStock']."', '".$_SESSION['testcentre']."');";
